@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"time"
 )
 
 type BingImg struct {
@@ -92,7 +93,7 @@ func main() {
 	defer imgResp.Body.Close()
 
 	// save image into wallpaper.jpg
-	imgFile, err := os.Create("wallpaper.jpg")
+	imgFile, err := os.Create("./download/wallpaper.jpg")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -103,6 +104,7 @@ func main() {
 	}
 	if written > 10000 {
 		fmt.Println("Copyright", bingJson.Images[0].Copyright)
+		fmt.Println("当前时间", time.Now().Format("2006-01-02"))
 		fmt.Println("图片下载完成，保存为 wallpaper.jpg ")
 	}
 }
